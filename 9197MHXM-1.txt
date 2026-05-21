@@ -1,0 +1,90 @@
+import { useState } from "react";
+
+export default function BeautyInk() {
+  const [lang, setLang] = useState("en");
+
+  const whatsappNumber = "17876763149";
+
+  const message =
+    lang === "es"
+      ? "Hola! Quiero agendar una cita en Beauty Ink 💅"
+      : "Hi! I would like to book an appointment at Beauty Ink 💅";
+
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+    message
+  )}`;
+
+  const t = {
+    en: {
+      title: "Beauty Ink",
+      subtitle: "Luxury Nails • Hair • Tattoos • Spa",
+      book: "Book Now",
+      about:
+        "Luxury beauty experience designed for confidence, beauty, and relaxation."
+    },
+    es: {
+      title: "Beauty Ink",
+      subtitle: "Uñas • Pelo • Tatuajes • Spa de Lujo",
+      book: "Reservar Ahora",
+      about:
+        "Experiencia de belleza de lujo para verte y sentirte increíble."
+    }
+  };
+
+  const text = t[lang];
+
+  return (
+    <div style={styles.page}>
+      {/* NAV */}
+      <div style={styles.nav}>
+        <h2 style={styles.logo}>Beauty Ink</h2>
+
+        <div>
+          <button onClick={() => setLang("en")}>EN</button>
+          <button onClick={() => setLang("es")}>ES</button>
+        </div>
+      </div>
+
+      {/* HERO */}
+      <div style={styles.hero}>
+        <h1>{text.title}</h1>
+        <p>{text.subtitle}</p>
+        <p>{text.about}</p>
+
+        <a href={whatsappLink} target="_blank" style={styles.button}>
+          {text.book}
+        </a>
+      </div>
+    </div>
+  );
+}
+
+const styles = {
+  page: {
+    fontFamily: "Arial",
+    textAlign: "center",
+    background: "linear-gradient(180deg,#ffe6f0,#fff)",
+    minHeight: "100vh",
+    padding: 20
+  },
+  nav: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  logo: {
+    color: "#ff4da6"
+  },
+  hero: {
+    marginTop: 60
+  },
+  button: {
+    display: "inline-block",
+    marginTop: 20,
+    padding: 15,
+    background: "#ff4da6",
+    color: "white",
+    borderRadius: 10,
+    textDecoration: "none"
+  }
+};
